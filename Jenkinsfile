@@ -14,6 +14,7 @@ pipeline {
 		}
 		stage ("httpd-container-run") {
 			steps {
+				sh "rm -rf /mnt/http/*"
 				sh "docker run -dp 80:80 --name server httpd"
 				sh "git clone https://github.com/sushil-11-jadhav/23Q1.git"
 				sh "docker cp /mnt/http/index.html server:/usr/local/apache2/htdocs"
